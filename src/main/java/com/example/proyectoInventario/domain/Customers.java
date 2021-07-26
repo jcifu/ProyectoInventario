@@ -56,14 +56,14 @@ public class Customers implements Serializable {
     private String country;
     
     @Column//(name = "`salesrepemployeenumber`")
-    private int SalesRepEmployeeNumber;
+    private Integer salesRepEmployeeNumber;
     
     @Column//(name = "`creditlimit`")
-    private double CreditLimit;
+    private double creditLimit;
   
     // Un empleado (Employees) puede tener muchos clientes bajo su responsabilidad (salesRepEmployeeNumber)
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="employeeNumber") //qué pasa con la columna salesRepEmployeeNumber? buscar variables de anotacion
+    @JoinColumn(name="salesRepEmployeeNumber", referencedColumnName = "employeeNumber", insertable = false, updatable = false) //qué pasa con la columna salesRepEmployeeNumber? buscar variables de anotacion
     private Employees employees;
     
 }

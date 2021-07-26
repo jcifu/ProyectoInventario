@@ -54,40 +54,18 @@ public class IndexController {
     }
     
     @PostMapping("/searchOrders") 
-    public String searchOrders(@ModelAttribute("ordersList") Orders orders, @RequestParam(value="status") String status, Model model){ //@RequestParam(value = "search", required = false) 
-        List<Orders> ordersList = ordersService.findByStatus(status);
-        model.addAttribute("ordersList", ordersList);
-        return "index";
-    }
-    
-   /* 
-    @GetMapping("/orders/{status}")
-    public String ordersMonitor(@PathVariable String status, Model model){
-        Optional<Orders> orders = ordersService.findOrdersByStatus(status);
-        model.addAttribute("orders", orders);
-        
-        /*List<String> dropdown = new ArrayList<>();
-        dropdown.add("Opcion 1");
-        dropdown.add("Opcion 2");
-        
-        //List<Orders> statusDropdown = ordersService.getAllStatus();
-        
-        //model.addAttribute("statusDropdown", statusDropdown);
-       
-        return "index/orders";
-    } */
+    public String searchOrders(@ModelAttribute("ordersList") Orders orders, @RequestParam(value="status") String status,
+            @RequestParam(value="customer") String customer, Model model){ //@RequestParam(value = "search", required = false) 
 
-    
-    
-    /*@GetMapping("/orders/{status}")
-    public List<Orders> listOrdersbyStatus(@PathVariable String status){
-        return ordersService.findByStatus(status);
+            List<Orders> ordersList = ordersService.findByStatus(status);
+            model.addAttribute("ordersList", ordersList);
+            return "index";
+            
+            /*
+            List<Orders> ordersList = ordersService.findByCustomerName(customer);
+            model.addAttribute("ordersList", ordersList);
+            return "index";
+            
+            */
     }
-    
-    @GetMapping("/editar/{id_vuelo}")
-    public String editar(Vuelo vuelo,Model model){
-        vuelo = vueloService.encontrarVuelo(vuelo);
-        model.addAttribute("vuelo",vuelo);
-        return "modificar";
-    */
 }

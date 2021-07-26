@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="`orders`")
+@Table(name="orders")
 public class Orders implements Serializable {
     @Id // id 
     @Column//(name = "`ordernumber`")
@@ -31,15 +31,15 @@ public class Orders implements Serializable {
     private String requiredDate;
     
     @Column//(name = "`shippeddate`")
-    private String shippedDate;
+        private String shippedDate;
     
     @Column//(name = "`status`")
     private String status;
     
-    @Column//(name="comments")
+    @Column(nullable = true)//(name="comments")
     private String comments;
     
-    @Column//(name = "`customernumber`")
+    @Column//(name = "`customerNumber`")
     private Integer customerNumber;
  
    

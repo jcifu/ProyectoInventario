@@ -23,21 +23,25 @@ public interface OrdersDAO extends JpaRepository<Orders,Integer>{
     @Transactional(readOnly = true)
     public List<String> getAllStatus();
     
-    @Query(value = "SELECT DISTINCT CONCAT(c.customerNumber, \" - \", c.customerName) AS customersList "
-            + "FROM orders o INNER JOIN customers c ON o.customerNumber = c.customerNumber ORDER BY c.customerNumber;", 
+    @Query(value = "SELECT DISTINCT c.customerName AS customersList "
+            + "FROM orders o INNER JOIN customers c ON o.customerNumber = c.customerNumber ORDER BY c.customerName;", 
             nativeQuery = true)
     public List<String> getAllCustomers();
     
     
-    
-    @Query(value = "SELECT o.orderNumber, o.orderDate, o.requiredDate FROM orders o WHERE o.status= ?1 ", nativeQuery = true)
+    //@Query(value = "SELECT o.* FROM orders AS o WHERE o.status= :status ORDER BY o.orderNumber", nativeQuery = true)
+    @Query(value = "SELECT o.*, c.customerName FROM orders AS o"
+            + " INNER JOIN customers c ON o.customerNumber = c.customerNumber"
+            + " WHERE o.status= :status ORDER BY o.orderNumber", nativeQuery = true)
     //name = "findByStatus")
     @Transactional(readOnly = true)
     public List<Orders> findByStatus(String status);
     
-    @Query(value = "SELECT o FROM orders o WHERE o.customerNumber= :customerNumber", nativeQuery = true)
+    @Query(value = "SELECT o.*, c.customerName FROM orders o"
+            + " INNER JOIN customers c ON o.customerNumber = c.customerNumber"
+            + " WHERE c.customerName= :customerName", nativeQuery = true)
     @Transactional(readOnly = true)
-    public Optional<Orders> findByCustomerNumber(@Param ("customerNumber") Integer customerNumber);
+    public List<Orders> findByCustomerName(@Param ("customerName") String customerName);
     
     /*@Query(value = "SELECT o FROM orders o WHERE o.orderDate BETWEEN o.requiredDate = :requiredDate AND o.shippedDate = :shippedDate", nativeQuery = true)
     @Transactional(readOnly = true)

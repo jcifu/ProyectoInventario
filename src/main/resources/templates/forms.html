@@ -31,7 +31,7 @@
                                         <div class="col-auto mr-1">
                                             <label for="selectCustomer">
                                                 Cliente
-                                                <select class="form-control custom-select" id="selectCustomer" form="ordersForm"
+                                                <select class="form-control custom-select" id="customer" name="customer" form="ordersForm"
                                                         th:object="${customersDropdown}">
                                                     <option selected>Seleccione Cliente</option>
                                                     <option th:each="customer : ${customersDropdown}" 
@@ -54,43 +54,43 @@
                                                     Fecha Orden Hasta:
                                                     <input type="date" class="form-control custom-select" id="hastaOrden" name="hastaOrden" value="2020-07-22" min="1970-01-01" max="2020-12-31">    
                                                 </label>
-                                            <div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto mr-1" >
+                                                <div>
+                                                    <input class="btn btn-info" type="submit" value="Buscar"/>    
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-auto mr-1" >
-                                        <div>
-                                            <input class="btn btn-info" type="submit" value="Buscar"/>    
-                                        </div>
-                                    </div>
+                                </form>
+                                <div class="container">
+                                    <table th:object="${ordersList}" class="table table-hover table-striped mt-7">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Orden #</th>
+                                                <th scope="col">Fecha Orden</th>
+                                                <th scope="col">Fecha Requerida</th>
+                                                <th scope="col">Estado</th>
+                                                <th scope="col">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="orders : ${ordersList}">
+                                                <th scope="row" th:text="${orders.orderNumber}" th:value="${orders.orderNumber}"></th>
+                                                <td th:text="${orders.orderDate}" th:value="${orders.orderDate}">orderDate</td>
+                                                <td th:text="${orders.requiredDate}" th:value="${orders.requiredDate}">requiredDate</td>
+                                                <td th:text="${orders.status}" th:value="${orders.status}">status</td>
+                                                <td>
+                                                    <span>
+                                                        <input class="btn btn-info" type="submit" value="Ver"/>
+                                                    </span>
+                                                </td>
+                                                <!-- <td th:text="${orders.boton}" th:value="${orders.boton}">Acción</td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            </form>
-                            <div class="container">
-                                <table th:object="${ordersList}" class="table table-hover table-striped mt-7">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Orden #</th>
-                                            <th scope="col">Fecha Orden</th>
-                                            <th scope="col">Fecha Requerida</th>
-                                            <th scope="col">Estado</th>
-                                            <th scope="col">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="orders : ${ordersList}">
-                                            <th scope="row" th:text="${orders.orderNumber}" th:value="${orders.orderNumber}"></th>
-                                            <td th:text="${orders.orderDate}" th:value="${orders.orderDate}">orderDate</td>
-                                            <td th:text="${orders.requiredDate}" th:value="${orders.requiredDate}">requiredDate</td>
-                                            <td th:text="${orders.status}" th:value="${orders.status}">status</td>
-                                            <td>
-                                                <span>
-                                                    <input class="btn btn-info" type="submit" value="Ver"/>
-                                                </span>
-                                            </td>
-                                            <!-- <td th:text="${orders.boton}" th:value="${orders.boton}">Acción</td> -->
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </body>
                     </html>

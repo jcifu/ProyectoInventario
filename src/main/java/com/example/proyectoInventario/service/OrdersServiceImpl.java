@@ -3,11 +3,7 @@ package com.example.proyectoInventario.service;
 
 import com.example.proyectoInventario.dao.OrdersDAO;
 import com.example.proyectoInventario.domain.Orders;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,8 +33,8 @@ public class OrdersServiceImpl implements OrdersService{
     }
     
     @Override
-    public Optional<Orders> findByCustomerNumber(Integer customerNumber) {
-        return ordersDAO.findByCustomerNumber(customerNumber);
+    public List<Orders> findByCustomerName(String customerName) {
+        return ordersDAO.findByCustomerName(customerName);
     }
 /*
     @Override
@@ -46,6 +42,7 @@ public class OrdersServiceImpl implements OrdersService{
         return ordersDAO.findByDate(shippedDate, requiredDate);
     }
     */
+    
     @Override
     public List<String> getAllStatus() {
         List<String> statusList = ordersDAO.getAllStatus();

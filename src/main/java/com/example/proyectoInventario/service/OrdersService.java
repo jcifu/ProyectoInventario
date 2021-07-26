@@ -21,7 +21,7 @@ public interface OrdersService {
     
     public List<Orders> findByStatus(String status);
     
-    public Optional<Orders> findByCustomerNumber(Integer customerNumber);
+    public List<Orders> findByCustomerName(String customerNumber);
     
     // public List<Orders> findByDate(String requiredDate, String shippedDate);
     

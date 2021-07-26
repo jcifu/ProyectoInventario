@@ -40,7 +40,7 @@ public class Employees implements Serializable {
     private String officeCode;
     
     @Column//(name = "`reportsto`")
-    private int reportsTo;
+    private Integer reportsTo;
     
     @Column//(name = "`jobtitle`")
     private String jobTitle;
