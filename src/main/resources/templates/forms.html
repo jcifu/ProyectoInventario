@@ -14,8 +14,8 @@
                                 <form id="ordersForm" method="POST" form="ordersForm" 
                                       th:action="@{/searchOrders}" 
                                       th:object="${ordersList}">
-                                    <div class="form-row">
-                                        <div class="col-auto mr-1">
+                                    <div class="d-flex flex-row col-md-12 justify-content-center">
+                                        <div class="flex- mr-1 ">
                                             <label for="Estado">
                                                 Estado
                                                 <select class="form-control custom-select" id="status" name="status" form="ordersForm"
@@ -28,7 +28,7 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <div class="col-auto mr-1">
+                                        <div class="flex-grow-1 mr-1">
                                             <label for="selectCustomer">
                                                 Cliente
                                                 <select class="form-control custom-select" id="customer" name="customer" form="ordersForm"
@@ -40,35 +40,33 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <div class="col-auto mr-1" >
-                                            <div>
+                                        <div class="flex-shrink-1 mr-1" >
                                                 <label for="inicioOrden">
                                                     Fecha Orden Desde:
                                                     <input type="date" class="form-control custom-select" id="inicioOrden" name="inicioOrden" value="2018-07-22" min="1970-01-01" max="2020-12-31">
                                                 </label>
-                                            </div>
                                         </div>
-                                        <div class="col-auto mr-1" >
-                                            <div class="">
+                                        <div class="flex-shrink-1 mr-1" >
                                                 <label for="hastaOrden">
                                                     Fecha Orden Hasta:
                                                     <input type="date" class="form-control custom-select" id="hastaOrden" name="hastaOrden" value="2020-07-22" min="1970-01-01" max="2020-12-31">    
                                                 </label>
-                                                <div>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto mr-1" >
-                                                <div>
-                                                    <input class="btn btn-info" type="submit" value="Buscar"/>    
-                                                </div>
-                                            </div>
                                         </div>
+
+                                        <div class="flex-shrink-1 mr-1 align-self-end mb-2" >
+                                        
+                                                <input class="btn btn-info" type="submit" value="Buscar"/>
+                                        
+                                        </div>
+                                    </div>
                                 </form>
-                                <div class="container">
+
+                                <div class="d-flex container flex-row justify-content-center">
                                     <table th:object="${ordersList}" class="table table-hover table-striped mt-7">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Orden #</th>
+                                                <th scope="col">Cliente</th>
                                                 <th scope="col">Fecha Orden</th>
                                                 <th scope="col">Fecha Requerida</th>
                                                 <th scope="col">Estado</th>
@@ -78,6 +76,7 @@
                                         <tbody>
                                             <tr th:each="orders : ${ordersList}">
                                                 <th scope="row" th:text="${orders.orderNumber}" th:value="${orders.orderNumber}"></th>
+                                                <td th:text="${orders.customers.customerName}" th:value="${orders.customers.customerName}">customerName</th>
                                                 <td th:text="${orders.orderDate}" th:value="${orders.orderDate}">orderDate</td>
                                                 <td th:text="${orders.requiredDate}" th:value="${orders.requiredDate}">requiredDate</td>
                                                 <td th:text="${orders.status}" th:value="${orders.status}">status</td>

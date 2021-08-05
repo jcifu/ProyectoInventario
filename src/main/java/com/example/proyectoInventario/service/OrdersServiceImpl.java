@@ -26,11 +26,6 @@ public class OrdersServiceImpl implements OrdersService{
     public List<Orders> findByStatus(String status) {
         return ordersDAO.findByStatus(status);
     }
-     
-   @Override
-    public void insertOrders(Orders orders) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     @Override
     public List<Orders> findByCustomerName(String customerName) {
