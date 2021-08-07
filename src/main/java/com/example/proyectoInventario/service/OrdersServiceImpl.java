@@ -31,6 +31,10 @@ public class OrdersServiceImpl implements OrdersService{
     public List<Orders> findByCustomerName(String customerName) {
         return ordersDAO.findByCustomerName(customerName);
     }
+    
+    public List<Orders> findByStatusOrCustomerName(String status, String customerName){
+        return ordersDAO.findByStatusOrCustomerName(status, customerName);
+    }
 /*
     @Override
     public List<Orders> findByDate(String requiredDate, String shippedDate){

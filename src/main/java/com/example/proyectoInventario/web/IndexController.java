@@ -34,7 +34,7 @@ public class IndexController {
     
     @GetMapping("/")
     public String getOrdersMonitor(Model model){
-        log.info("hola");
+        log.info("Mapping Orders Monitor");
         List<String> statusDropdown = ordersService.getAllStatus();
         model.addAttribute("statusDropdown", statusDropdown);
         
@@ -44,19 +44,29 @@ public class IndexController {
         return "index";
     }
     
-    @PostMapping("/searchOrders")
+    @GetMapping("/searchOrders")
     public String searchOrders(@ModelAttribute("ordersList") Orders orders, @RequestParam(value="status", required = false) String status,
             Model model, @RequestParam(value = "customer", required = false) String customer){
         
+        
+        
+        
         List<Orders> ordersList = new ArrayList<>();
-    
-        if(customer != null){
+        ordersList = ordersService.findByStatusOrCustomerName(status, customer);
+        /*if(customer != null){
              ordersList = ordersService.findByCustomerName(customer);
         }
         else if(status != null){
             ordersList = ordersService.findByStatus(status);
-        }
+        }*/
         model.addAttribute("ordersList", ordersList);
+        
+        List<String> customersDropdown = ordersService.getAllCustomers();
+        model.addAttribute("customersDropdown", customersDropdown);
+        
+        List<String> statusDropdown = ordersService.getAllStatus();
+        model.addAttribute("statusDropdown", statusDropdown);
+        
         return "index";
     }
 }

@@ -27,30 +27,7 @@
 </div>
 
 </div>
-<!--         
-    <div>
-        <table id="tabla-monitor" class="table">
-            <thead>
-                <th scope-="col">Número de Orden</th>
-                <th scope-="col">Fecha Orden</th>
-                <th scope-="col">Fecha Requerida</th>
-                <th scope-="col">Status</th>
-                <th scope-="col">Acción</th>
-            </thead>
-            
-            <tr th:each="orders:${order}">
-                <td th:text="${orders.orderNumber}" scope="row">ID Orden</td>
-                <td th:text="${orders.orderDate}" scope="row">fecha orden</td>
-                <td th:text="${orders.requiredDate}" scope="row">fecha requerida</td>
-                <td th:text="${orders.status}" scope="row">Status</td>
-                <td scope="row">
-                    <input class="btn btn-info" type="button" value="Ver">
-                </td>
-            </tr>
-        </table>
-    </div>
-    
---> 
+
 <footer>
     <div th:insert="/footer.html :: footer">    
     </div>

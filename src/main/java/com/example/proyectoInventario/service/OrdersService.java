@@ -16,10 +16,11 @@ public interface OrdersService {
     
     public List<String> getAllStatus();
     
-    
     public List<Orders> findByStatus(String status);
     
     public List<Orders> findByCustomerName(String customerName);
+    
+    public List<Orders> findByStatusOrCustomerName(String status, String customerName);
     
     // public List<Orders> findByDate(String requiredDate, String shippedDate);
 }

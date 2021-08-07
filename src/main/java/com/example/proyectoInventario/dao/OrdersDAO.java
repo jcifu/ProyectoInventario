@@ -33,9 +33,17 @@ public interface OrdersDAO extends JpaRepository<Orders,Integer>{
     
     @Query(value = "SELECT ord.*, c.customerName FROM orders ord"
             + " INNER JOIN customers c ON ord.customerNumber = c.customerNumber"
-            + " WHERE c.customerName= :customerName", nativeQuery = true)
+            + " WHERE c.customerName= :customerName"
+            + " ORDER BY o.orderNumber", nativeQuery = true)
     @Transactional(readOnly = true)
     public List<Orders> findByCustomerName(String customerName);
+    
+    @Query(value = "SELECT o.*, c.customerName FROM orders AS o"
+            + " INNER JOIN customers c ON o.customerNumber = c.customerNumber"
+            + " WHERE o.status= :status OR c.customerName= :customerName"
+            + " ORDER BY o.orderNumber", nativeQuery = true)
+    @Transactional(readOnly = true)
+    public List<Orders> findByStatusOrCustomerName(String status, String customerName);
     
     /*@Query(value = "SELECT o FROM orders o WHERE o.orderDate BETWEEN o.requiredDate = :requiredDate AND o.shippedDate = :shippedDate", nativeQuery = true)
     @Transactional(readOnly = true)

@@ -11,7 +11,7 @@
                         <div th:fragment="ordersForm" class="container">
                             <span><h1>Monitor de ordenes</h1></span>
                             <div class="container">
-                                <form id="ordersForm" method="POST" form="ordersForm" 
+                                <form id="ordersForm" method="GET" form="ordersForm" 
                                       th:action="@{/searchOrders}" 
                                       th:object="${ordersList}">
                                     <div class="d-flex flex-row col-md-12 justify-content-center">
